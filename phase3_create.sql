@@ -5,7 +5,7 @@ advisor_lname VARCHAR(20),
 job_pos VARCHAR(20),
 dept_name VARCHAR(20),
 internal_ph VARCHAR(15),
-room_INT INT(8),
+room_number	INT(8),
 PRIMARY KEY (advisor_id));
 
 INSERT INTO Staff_Advisor VALUES('58173819', 'Jackie', 'wood','ResidenceAdvisor ','Residence',2265789876,234);
@@ -139,6 +139,8 @@ FOREIGN KEY(Flat_num) REFERENCES Flats(Flat_num));
 
 INSERT INTO Flat_Inspections VALUES(23456, DATE '2022-05-09', 'Y', 'excellent', '2790', '67');
 INSERT INTO Flat_Inspections VALUES(12345, DATE '2022-06-20', 'Y', 'good', '2790', '56');
+INSERT INTO Flat_Inspections VALUES(65432, DATE '2020-05-19', 'N', 'horrific', '2990', '67');
+INSERT INTO Flat_Inspections VALUES(99882, DATE '2021-05-15', 'Y', 'amazing condition', '2990', '67');
 
 
 
