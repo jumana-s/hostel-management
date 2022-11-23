@@ -5,7 +5,7 @@ advisor_lname VARCHAR(20),
 job_pos VARCHAR(20),
 dept_name VARCHAR(20),
 internal_ph VARCHAR(15),
-room_number	INT(8),
+room_number INTEGER(8),
 PRIMARY KEY (advisor_id));
 
 INSERT INTO Staff_Advisor VALUES('58173819', 'Jackie', 'wood','ResidenceAdvisor ','Residence',2265789876,234);
@@ -147,11 +147,12 @@ INSERT INTO Flat_Inspections VALUES(99882, DATE '2021-05-15', 'Y', 'amazing cond
 CREATE TABLE Leases(
 lease_num VARCHAR(8) NOT NULL,
 hall_place_num VARCHAR(8),
-flat_place_num VARCHAR(8) CHECK ( (hall_place_num IS NOT NULL AND flat_place_num IS NULL ) OR ( hall_place_num IS NULL AND flat_place_num IS NOT NULL) ),
+flat_place_num VARCHAR(8),
 student_id VARCHAR(8) NOT NULL,
 lease_duration VARCHAR(20),
 date_of_entry DATE,
 date_of_exit DATE,
+CHECK ((hall_place_num IS NOT NULL AND flat_place_num IS NULL ) OR ( hall_place_num IS NULL AND flat_place_num IS NOT NULL) ),
 PRIMARY KEY (lease_num),
 FOREIGN KEY (hall_place_num) references Hall_rooms(place_num),
 FOREIGN KEY (flat_place_num) references Flat_rooms(place_num),
