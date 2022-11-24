@@ -40,7 +40,7 @@ if (isset($_SESSION['advisor'])) {
         <div class="container">
             <header class="d-flex flex-wrap justify-content-center py-3 mb-4">
                 <!-- Logo -->
-                <a href="index.php" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
                     <i class="bi bi-circle-fill dark-blue-text" style="font-size: 3rem;"></i>
                     <span class="fs-1 fw-bold dark-blue-text" style="padding-left: 0.5rem;">UWindsor HMS</span>
                 </a>
@@ -48,7 +48,7 @@ if (isset($_SESSION['advisor'])) {
                 <!-- Tabs -->
                 <ul class="nav nav-tabs my-auto ms-4 mb-3" >
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link active " href="staff.php" role="tab" aria-selected="true">
+                        <a class="nav-link" href="staff.php" role="tab" aria-selected="false">
                             Profile
                         </a>
                     </li>
@@ -58,7 +58,7 @@ if (isset($_SESSION['advisor'])) {
                         </a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="student_status.php" aria-selected="false">
+                        <a class="nav-link active" href="student_status.php" aria-selected="true">
                             Students
                         </a>
                     </li>
@@ -77,57 +77,33 @@ if (isset($_SESSION['advisor'])) {
         <main class="container py-4">
             <div class="row align-items-md-stretch">
                 <div class="col-md-5">
-                    <img src="images/profile.jpeg" class="img-fluid" alt="Profile image">
+                    <img src="images/list.jpeg" class="img-fluid" alt="List image">
                 </div>
-                <!-- Staff Profile -->
+                <!-- Student Profile -->
                 <div class="col-md-7 p-5 mb-4 bg-light rounded-3">
-                    <h1 class="display-5 text-center fw-bold pb-2">Profile</h1>
-                    <table class="table table-borderless">
-                        <tbody>
+                    <h1 class="display-5 text-center fw-bold pb-2">Students</h1>
+                    <div class="list-group list-group-flush pb-5 pt-3">
+
                             <?php
-                                 $result = $connection->query("SELECT * FROM Hostel_staff WHERE Staff_num=".$_SESSION['staff']."");
+                                 $result = $connection->query("SELECT * FROM Student");
 
-                                //  print staff info based on logged in staff_id
                                 while($row = $result->fetch_assoc()) {
-                                    echo '<tr>';
-                                    echo '<td class="fw-bold fs-4">ID</td>';
-                                    echo '<td class="fs-4">'.$row["Staff_num"].'</td>';
-                                    echo '</tr>';
-
-                                    echo '<tr>';
-                                    echo '<td class="fw-bold fs-4">Name</td>';
-                                    echo '<td class="fs-4">'.$row["Staff_name"].'</td>';
-                                    echo '</tr>';
-
-                                    echo '<tr>';
-                                    echo '<td class="fw-bold fs-4">Address</td>';
-                                    echo '<td class="fs-4">'.$row["street"].' '.$row["city"].' '.$row["postal_code"].'</td>';
-                                    echo '</tr>';
-
-                                    echo '<tr>';
-                                    echo '<td class="fw-bold fs-4">Birthday</td>';
-                                    echo '<td class="fs-4">'.$row["DOB"].'</td>';
-                                    echo '</tr>';
-
-                                    echo '<tr>';
-                                    echo '<td class="fw-bold fs-4">Gender</td>';
-                                    echo '<td class="fs-4">'.$row["Gender"].'</td>';
-                                    echo '</tr>';
-
-                                    echo '<tr>';
-                                    echo '<td class="fw-bold fs-4">Location</td>';
-                                    echo '<td class="fs-4">'.$row["Service_loc"].'</td>';
-                                    echo '</tr>';
-
-                                    echo '<tr>';
-                                    echo '<td class="fw-bold fs-4">Position</td>';
-                                    echo '<td class="fs-4">'.$row["Job_position"].'</td>';
-                                    echo '</tr>';
-
+                                    echo '<span class="list-group-item list-group-item-light d-flex justify-content-between">';
+                                    echo '<span class="fs-4">'.$row["student_id"].'</span>';
+                                    echo '<span class="fs-4">'.$row["student_lname"].'</span>';
+                                    echo '<span class="fs-4">'.$row["student_fname"].'</span>';
+                                    echo '<span class="fs-4">'.$row["current_status"].'</span>';
+                                    if ($row["current_status"] == 'placed') {
+                                        $result_lease = $connection->query("SELECT lease_num FROM Leases WHERE student_id=".$row["student_id"]."");
+                                        $row_lease = $result_lease->fetch_assoc();
+                                        echo '<a class="btn btn-outline-secondary" href="staff_lease_view.php?lease_id='.$row_lease["lease_num"].'" role="button">View Lease</a>';
+                                    } else {
+                                        echo '<a class="btn btn-outline-secondary" href="rooms.php" role="button">Rooms</a>';
+                                    }
+                                    echo '</span>';
                                 }
                             ?>
-                        </tbody>
-                    </table>
+                     </div>
                 </div>
             </div>
         </main>

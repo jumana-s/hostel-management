@@ -27,7 +27,7 @@ if (isset($_SESSION['advisor'])) {
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     </head>
    
-    <body>
+    <body class="d-flex flex-column align-content-stretch vh-100">
         <!-- Header -->
         <div class="container">
             <header class="d-flex flex-wrap justify-content-center py-3 mb-4">
@@ -47,6 +47,11 @@ if (isset($_SESSION['advisor'])) {
                     <li class="nav-item" role="presentation">
                         <a class="nav-link active" href="rooms.php" aria-selected="true">
                             Rooms
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="student_status.php" aria-selected="false">
+                            Students
                         </a>
                     </li>
                 </ul>  
