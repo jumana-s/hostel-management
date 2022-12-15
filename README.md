@@ -1,6 +1,6 @@
 # Hostel Management System (HMS)
 
-[Link to HMS Application](http://moham12y.myweb.cs.uwindsor.ca/hms/)
+[Link to HMS Application](https://noor112.myweb.cs.uwindsor.ca/HMS/)
 
 ![Homepage Image](images/homepage_screenshot.png)
 
